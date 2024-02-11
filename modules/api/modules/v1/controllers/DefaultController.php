@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace app\modules\api\modules\v1\controllers;
 
+use app\modules\api\modules\v1\components\CustomBearerAuth;
 use app\modules\api\modules\v1\services\AbstractService;
 use app\modules\api\modules\v1\services\ConvertService;
 use app\modules\api\modules\v1\services\RatesService;
 use Yii;
 use yii\base\InvalidRouteException;
-use yii\filters\auth\HttpBearerAuth;
 use yii\rest\Controller;
 use yii\web\MethodNotAllowedHttpException;
 
@@ -20,7 +20,7 @@ class DefaultController extends Controller
         $behaviors = parent::behaviors();
 
         $behaviors['bearerAuth'] = [
-            'class' => HttpBearerAuth::class
+            'class' => CustomBearerAuth::class,
         ];
 
         return $behaviors;
